@@ -2,7 +2,7 @@ package org.koreait.repositories;
 
 import org.koreait.entities.post.PostView;
 import org.koreait.entities.post.PostViewId;
-import org.koreait.entities.QPostView;
+import org.koreait.entities.post.QPostView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
