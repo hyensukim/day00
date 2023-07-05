@@ -1,6 +1,7 @@
 package org.koreait.services.member;
 
 import lombok.RequiredArgsConstructor;
+import org.koreait.commons.constants.Role;
 import org.koreait.entities.member.MemberEntity;
 import org.koreait.exceptions.member.MemberDataNotExistsException;
 import org.koreait.repositories.MemberRepository;
@@ -20,5 +21,15 @@ public class MemberUpdateService {
         member.setMemberPw(passwordEncoder.encode(memberPw));
 
         repository.saveAndFlush(member);
+    }
+
+    public void updateRoll(long memberNo, Role role){
+        MemberEntity member = repository.findById(memberNo).orElseThrow(MemberDataNotExistsException::new);
+        Role role_db = member.getRole();
+
+        if(role_db != role){
+            member.setRole(role);
+            repository.saveAndFlush(member);
+        }
     }
 }

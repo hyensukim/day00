@@ -38,5 +38,5 @@ public class MemberEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(length=15,nullable = false)
-    private Role role = Role.MEMBER;
+    private Role role = Role.MEMBER; // 권한
 }

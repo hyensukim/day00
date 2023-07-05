@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/admin/main}">
+    <section layout:fragment="content">
+        <table class="table-rows">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" class="checkall" id="checkall" data-target-name="memberNo">
+                        <label for="checkall"></label>
+                    </th>
+                    <th>회원 번호</th>
+                    <th>아이디</th>
+                    <th>회원명</th>
+                    <th>이메일</th>
+                    <th>휴대전화 번호</th>
+                    <th>가입일자</th>
+                    <th>권한관리</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item,status : ${items}" th:object="${item}">
+                    <td align="center">
+                        <input type="checkbox" name="memberNo" th:value="*{memberNo}" th:id="${'memberNo' + status.index}">
+                        <label th:for="${'memberNo' + status.index}"></label>
+                    </td>
+                    <td align="center" th:text="*{memberNo}"></td>
+                    <td align="center" th:text="*{memberId}"></td>
+                    <td align="center" th:text="*{memberNm}"></td>
+                    <td align="center" th:text="*{email}"></td>
+                    <td align="center" th:text="*{mobile}"></td>
+                    <td align="center" th:text="*{createdAt}"></td>
+                    <td align="center" th:text="*{role}"></td>
+                    <td align="center">
+                        <!--회원 탈퇴 / -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</html>
