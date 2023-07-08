@@ -17,9 +17,9 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class FileUploadService {
+    @Value("${file.upload.path}")
+    private String fileUploadPath;
     private final FileRepository repository;
-    @Value("file.upload.path")
-    private final String fileUploadPath;
     private final HttpServletRequest request;
 
     /**
@@ -33,6 +33,7 @@ public class FileUploadService {
         gId = gId == null || gId.isBlank() ? UUID.randomUUID().toString() : gId;
 
         List<FileEntity> datas = new ArrayList<>();
+
         for(MultipartFile file : files){
             String fileName = file.getOriginalFilename();
             String extension = fileName.lastIndexOf('.') != -1 ? fileName
@@ -56,6 +57,7 @@ public class FileUploadService {
             }
             data.setFilePath(path);
             data.setFileUrl(url);
+
             try {
                 file.transferTo(new File(path));
             } catch (IOException e) {
@@ -64,7 +66,6 @@ public class FileUploadService {
 
             datas.add(data);
         }
-
 
         return datas;
     }

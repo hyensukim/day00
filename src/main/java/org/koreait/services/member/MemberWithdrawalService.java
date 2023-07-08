@@ -32,4 +32,8 @@ public class MemberWithdrawalService {
             repository.flush();
         }
     }
+
+    public void forcedWithdrawal(){
+
+    }
 }
